@@ -99,10 +99,9 @@ PROMPT_COMMAND=set_custom_prompt
 
 
 
-# Activar autocompletado
-if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-fi
+
+# Activar autocompletado (solo para compatibilidad, preferir la ruta de Arch)
+[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 
 # Agregar /usr/local/bin y ~/.local/bin al PATH
 export PATH="$PATH:$HOME/.local/bin:/usr/local/bin"
