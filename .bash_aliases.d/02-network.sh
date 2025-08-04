@@ -13,6 +13,7 @@ alias ping='ping -c 10'
 # Alias para conexiones VPN y herramientas de pentesting
 alias vpn_thm='sudo openvpn ~/Documentos/TryHackme/conexion/okud4.ovpn'
 alias vpn_htb='sudo openvpn ~/Documentos/HTB/Conexion/okud4htb.ovpn'
+alias vpn_academy='sudo openvpn ~/Documentos/HTB/Conexion/academy.ovpn'
 alias pyhttp='python3 -m http.server'
 alias nclisten='rlwrap nc -lvnp 7777'
 alias rcatlisten='rcat listen -ib 7777'

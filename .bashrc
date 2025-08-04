@@ -12,6 +12,25 @@ export HISTFILESIZE=20000
 shopt -s histappend
 PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
+export PAYLOADS="/usr/share/payloads"
+export SECLISTS="$PAYLOADS/seclists"
+export PAYLOADSALLTHETHINGS="$PAYLOADS/payloadsallthethings"
+export FUZZDB="$PAYLOADS/fuzzdb"
+export AUTOWORDLISTS="$PAYLOADS/autowordlists"
+export SECURITYWORDLIST="$PAYLOADS/security-wordlist"
+
+export MIMIKATZ="/usr/share/windows/mimikatz/"
+export POWERSPLOIT="/usr/share/windows/powersploit/"
+
+export ROCKYOU="$SECLISTS/Passwords/Leaked-Databases/rockyou.txt"
+export DIRSMALL="$SECLISTS/Discovery/Web-Content/directory-list-2.3-small.txt"
+export DIRMEDIUM="$SECLISTS/Discovery/Web-Content/directory-list-2.3-medium.txt"
+export DIRBIG="$SECLISTS/Discovery/Web-Content/directory-list-2.3-big.txt"
+export WEBAPI_COMMON="$SECLISTS/Discovery/Web-Content/api/api-endpoints.txt"
+export WEBAPI_MAZEN="$SECLISTS/Discovery/Web-Content/common-api-endpoints-mazen160.txt"
+export WEBCOMMON="$SECLISTS/Discovery/Web-Content/common.txt"
+export WEBPARAM="$SECLISTS/Discovery/Web-Content/burp-parameter-names.txt"
+
 # Colores útiles
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
@@ -121,3 +140,9 @@ eval "$(pyenv init - bash)"
 
 # Cargo
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# Ruby
+export PATH="$PATH:$HOME/.local/share/gem/ruby/3.4.0/bin"
+
+# Go
+export PATH="$PATH:$HOME/go/bin"

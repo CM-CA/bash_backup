@@ -21,3 +21,6 @@ alias less='less -R'
 ##########################
 # Alias para copiar contenido al portapapeles
 alias copyfile='xclip < '
+
+# Please
+alias please='sudo'
