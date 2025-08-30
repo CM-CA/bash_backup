@@ -117,10 +117,19 @@ PROMPT_COMMAND=set_custom_prompt
 
 
 
+# Comprobar si ble.sh está instalado
+if [[ -f /usr/share/blesh/ble.sh ]]; then
+    # Cargar ble.sh
+    [[ $1 != no-repeat-flag ]] && source /usr/share/blesh/ble.sh
+else
+    echo "ble.sh no está instalado."
+    read -rp "¿Deseas instalarlo ahora? [y/N]: " resp
+    if [[ "$resp" =~ ^[Yy]$ ]]; then
+        # Llamar a un script externo para instalarlo
+        ~/.blesh_install/install-ble.sh
+    fi
+fi
 
-
-# Activar autocompletado (solo para compatibilidad, preferir la ruta de Arch)
-[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 
 # Agregar /usr/local/bin y ~/.local/bin al PATH
 export PATH="$PATH:$HOME/.local/bin:/usr/local/bin"
