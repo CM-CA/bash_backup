@@ -117,20 +117,6 @@ PROMPT_COMMAND=set_custom_prompt
 
 
 
-# Comprobar si ble.sh está instalado
-if [[ -f /usr/share/blesh/ble.sh ]]; then
-    # Cargar ble.sh
-    [[ $1 != no-repeat-flag ]] && source /usr/share/blesh/ble.sh
-else
-    echo "ble.sh no está instalado."
-    read -rp "¿Deseas instalarlo ahora? [y/N]: " resp
-    if [[ "$resp" =~ ^[Yy]$ ]]; then
-        # Llamar a un script externo para instalarlo
-        ~/.blesh_install/install-ble.sh
-    fi
-fi
-
-
 # Agregar /usr/local/bin y ~/.local/bin al PATH
 export PATH="$PATH:$HOME/.local/bin:/usr/local/bin"
 
@@ -139,13 +125,25 @@ export EDITOR=nano
 
 # Evitar que los scripts creen archivos de backup como nombre~
 set -o noclobber
+
+# --- pyenv y pyenv-virtualenv ---
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv virtualenv-init -)"
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - bash)"
+
+if command -v pyenv >/dev/null; then
+    eval "$(pyenv init -)"
+
+    # Verificar si el plugin pyenv-virtualenv está instalado
+    if [ ! -d "$(pyenv root)/plugins/pyenv-virtualenv" ]; then
+        echo "[+] Instalando pyenv-virtualenv..."
+        git clone https://github.com/pyenv/pyenv-virtualenv.git "$(pyenv root)/plugins/pyenv-virtualenv"
+    fi
+
+    # Inicializar pyenv-virtualenv si existe
+    if [ -d "$(pyenv root)/plugins/pyenv-virtualenv" ]; then
+        eval "$(pyenv virtualenv-init -)"
+    fi
+fi
 
 # Cargo
 export PATH="$HOME/.cargo/bin:$PATH"
